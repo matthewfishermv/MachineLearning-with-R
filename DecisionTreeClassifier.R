@@ -41,3 +41,14 @@ text(dt)
 # Predict test data from the decision tree.
 pred <- predict(dt, jobs[jobs$test == F,], type = "class")
 confusionMatrix(pred, jobs$landed[jobs$test == F])
+
+# Tune hyperparameters.
+set.seed(23488)
+dt.2 <- tree(landed ~ ., data = jobs, subset = which(test == T),
+             control = tree.control(mincut = 8, minsize = 20, nobs = nrow(jobs[jobs$test == T,])))
+
+plot(dt.2)
+text(dt.2)
+
+pred.2 <- predict(dt.2, jobs[jobs$test == F,], type = "class")
+confusionMatrix(pred.2, jobs$landed[jobs$test == F])
