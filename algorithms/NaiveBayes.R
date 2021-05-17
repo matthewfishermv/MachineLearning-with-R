@@ -56,7 +56,7 @@ confusionMatrix(pred, email$spam[email$test == F])
 # This example uses text mining to create a corpus and applies Naive Bayes on the corpus.
 
 # Load and wrangle the data.
-sms <- read.table("data/sms_spam_collection.txt", sep = "\t", header = F, quote = "")
+sms <- read.table("../data/sms_spam_collection.txt", sep = "\t", header = F, quote = "")
 names(sms) <- c("Label", "Message")
 sms$Label <- factor(sms$Label)
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Features sometimes need to be scaled so they fit into a standard range. This involves transforming variables into a narrower or wider range than they are found in the observed data.
 
-Two common methods for scaling features are **min-max normalization** and **z-score normalization**:
+Two common methods for scaling features are **min-max normalization** and **z-score normalization**, each shown below:
 
 \[
 X_{new} = \frac{X-min(X)}{max(X)-min(X)}
@@ -27,6 +27,37 @@ X_{new} = \frac{X-\mu}{\sigma} = \frac{X-mean(X)}{StdDev(X)}
 \]
 
 # Algorithms
+
+## Regression Algorithms
+
+### Simple Linear Regression
+
+```{r echo=FALSE, out.width="100%", fig.cap=NULL, fig.align="center"}
+knitr::include_graphics("images/SimpleLinearRegression.png")
+```
+
+**Simple linear regression** is a statistical method for evaluating the relationship between two continuous variables. One variable, denoted $x$, is the **independent variable** (also called **predictor variable**) that is used to predict the **dependent variable** (also called **response variable**), denoted $y$.
+
+In linear regression, we use methods such as **ordinary least squares** to approximate the equation of a line describing the relationship between the predictor and response variables. We find a **correlation coefficient**:
+
+\[
+r = \frac{1}{n - 1} \sum \left(\frac{x-\bar{x}}{s_x}\right) \left(\frac{y-\bar{y}}{s_y}\right)
+\]
+
+In simple linear regression, we estimate two coefficients, $\beta_0$ (the y-intercept) and $\beta_1$ (the regression slope). Because this is an estimate, there is a residual error, $\epsilon$. These are combined to form a **line of best fit**:
+
+\[
+\hat{y} = \beta_0 + \beta_1 x + \epsilon
+\]
+
+Functions related to running simple linear regression models in R are:
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `cor()` | Calculate correlation coefficient. | `cor(x, y)` |
+| `lm()` | Train a linear regression model. | `lm(sheight ~ fheight, data = father.son)` |
+| `summary()` | Summarize a linear model. | `m <- lm(y ~ x)`\break`summary(m)` |
+| `confint()` | Compute confidence interval for model parameters. | `m <- lm(y ~ x)`\break`confint(m)` |
 
 ## Classification Algorithms
 
