@@ -9,7 +9,7 @@ library(SnowballC)
 #######################
 
 # Load the email spam data and wrangle it.
-email <- read.csv("data/email-spam.csv") %>% tibble()
+email <- read.csv("../data/email-spam.csv") %>% tibble()
 
 # Factorize the output variable with "Yes" and "No".
 email$spam <- factor(

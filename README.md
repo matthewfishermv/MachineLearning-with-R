@@ -6,15 +6,15 @@ This repository provides complete examples of machine learning algorithms using 
 
 The [machine learning cheat sheet](./MachineLearningCheatSheet_R.pdf) outlines machine learning concepts, R libraries, and mathematics. It is organized by machine learning tasks (supervised learning, unspervised learning, etc.).
 
-All data used to train and test the machine learning algorithms in this package are stored in the 'data' folder, or is pulled from APIs, R packages, and web scraping techniques.
+All data used to train and test the machine learning algorithms in this package are stored in the 'data' folder, or are pulled from APIs, R packages, and web scraping techniques.
 
 ## Topics
 
 ### Supervised Learning Algorithms
 
-- [Simple Linear Regression](./SimpleLinearRegression.R)
-- [Decision Tree Classifier](./DecisionTreeClassifier.R)
-- [Naive Bayes Classifier](./NaiveBayes.R)
+- [Simple Linear Regression](./algorithms/SimpleLinearRegression.R)
+- [Decision Tree Classifier](./algorithms/DecisionTreeClassifier.R)
+- [Naive Bayes Classifier](./algorithms/NaiveBayes.R)
 
 ## Getting Started with R
 

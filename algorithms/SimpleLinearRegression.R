@@ -3,6 +3,7 @@ library(tidyverse)
 library(caret)
 
 # Load data.
+# Data source: Data set used by Pearson to investigate regression. Accessed via UsingR package.
 data(father.son)
 
 # Calculate statistics for father and son heights.

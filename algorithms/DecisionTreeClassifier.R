@@ -3,7 +3,7 @@ library(caret)
 library(tidyverse)
 
 # Load the job interview success data and wrangle it.
-jobs <- read.csv("data/job_interview_success.csv") %>% tibble()
+jobs <- read.csv("../data/job_interview_success.csv") %>% tibble()
 jobs <- jobs[, -1] # Remove the first column.
 jobs$ontime <- as.factor(jobs$ontime)
 jobs$suit <- as.factor(jobs$suit)
