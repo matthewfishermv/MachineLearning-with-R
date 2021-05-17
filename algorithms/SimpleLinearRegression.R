@@ -37,7 +37,7 @@ father.son %>%
   labs(
     title = "Father-Son Height Correlation\n",
     x = "\nFather's Height (in.)",
-    y = "Son'S Height (in.)\n"
+    y = "Son's Height (in.)\n"
   ) +
   theme_bw() +
   geom_smooth(method = "lm", formula = y ~ x, se = F, color = "tomato2")
