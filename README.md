@@ -12,6 +12,7 @@ All data used to train and test the machine learning algorithms in this package 
 
 ### Supervised Learning Algorithms
 
+- [Simple Linear Regression](./SimpleLinearRegression.R)
 - [Decision Tree Classifier](./DecisionTreeClassifier.R)
 - [Naive Bayes Classifier](./NaiveBayes.R)
 
