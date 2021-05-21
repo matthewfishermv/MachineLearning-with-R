@@ -20,4 +20,4 @@ All data used to train and test the machine learning algorithms in this package 
 
 You will need an integrated development environment (IDE) such as [RStudio](https://www.rstudio.com/products/rstudio/download/) to execute R code.
 
-It is recommended that you have a foundational understanding of both statistics and R to effectively use machine learning. The [Statistics with R course on GitHub]([Statistics with R course on GitHub](https://github.com/matthewfishermv/Statistics-with-R/)) is a good place to start.
+It is recommended that you have a foundational understanding of both statistics and R to effectively use machine learning. The [Statistics with R course on GitHub](https://github.com/matthewfishermv/Statistics-with-R/) is a good place to start.

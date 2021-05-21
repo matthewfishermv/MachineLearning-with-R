@@ -16,15 +16,32 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Features sometimes need to be scaled so they fit into a standard range. This involves transforming variables into a narrower or wider range than they are found in the observed data.
 
-Two common methods for scaling features are **min-max normalization** and **z-score normalization**, each shown below:
+One method for scaling features is **min-max normalization**, which uses the minimum and maximum values within the feature to produce a value between 0 and 1:
 
 \[
 X_{new} = \frac{X-min(X)}{max(X)-min(X)}
 \]
 
+
+```{r echo=TRUE}
+x <- seq(10, 30, by = 1)
+x.new <- (x - min(x)) / (max(x) - min(x))
+```
+
+This method is useful when the values different features are required to be within the same range, for example with K-Nearest Neighbors classifiers and K-Means clustering.
+
+Another method for scaling features is **z-score normalization**, which standardizes the feature to have the features of the normal distribution (with a mean of 0 and standard deviation of 1):
+
 \[
 X_{new} = \frac{X-\mu}{\sigma} = \frac{X-mean(X)}{StdDev(X)}
 \]
+
+```{r echo=TRUE}
+x <- seq(5, 45, by = 1)
+x.new <- (x - mean(x)) / sd(x)
+```
+
+\newpage
 
 # Algorithms
 
