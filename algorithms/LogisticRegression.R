@@ -60,3 +60,46 @@ pred.2 <- ifelse(prob.2 >= 0.5, TRUE, FALSE)
 
 # Evaluate the performance.
 confusionMatrix(factor(pred.2), test.data$successful)
+
+
+# Improving model performance
+#############################
+# Construct a function to test different cutoff values.
+assess_model <- function(model, test.data, cutoff) {
+  prob <- predict(model, test.data, type = "response")
+  pred <- ifelse(prob >= cutoff, TRUE, FALSE)
+  
+  confuse <- confusionMatrix(factor(pred), test.data$successful)
+  accuracy <- confuse$overall[2]
+  
+  return(tibble(
+    Cutoff = cutoff,
+    Accuracy = accuracy
+  ))
+}
+
+# Find the optimal cutoff for model 1 (highest accuracy).
+performance <- lapply(seq(0.25, 0.75, by = 0.005), function(x) {
+  assess_model(model, test.data, x)
+}) %>% bind_rows()
+
+best.cutoff <- performance$Cutoff[which(performance$Accuracy == max(performance$Accuracy))]
+
+plot(Accuracy ~ Cutoff, performance, type = "l",
+     main = "Model 1 Optimal Cutoff\n")
+abline(v = best.cutoff,
+       lwd = 2, col = "steelblue3")
+mtext(text = paste0("Best cutoff = ", best.cutoff), col = "steelblue3")
+
+# Find the optimal cutoff for model 2 (highest accuracy).
+performance <- lapply(seq(0.25, 0.75, by = 0.005), function(x) {
+  assess_model(model.2, test.data, x)
+}) %>% bind_rows()
+
+best.cutoff <- performance$Cutoff[which(performance$Accuracy == max(performance$Accuracy))]
+
+plot(Accuracy ~ Cutoff, performance, type = "l",
+     main = "Model 1 Optimal Cutoff\n")
+abline(v = best.cutoff,
+       lwd = 2, col = "steelblue3")
+mtext(text = paste0("Best cutoff = ", best.cutoff), col = "steelblue3")
