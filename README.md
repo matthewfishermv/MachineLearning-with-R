@@ -1,5 +1,7 @@
 # Machine Learning with R
 
+![Multiple linear regression example](./images/MultipleLinearRegression.png)
+
 # Introduction
 
 This repository provides complete examples of machine learning algorithms using the R statistical software.
@@ -10,11 +12,16 @@ All data used to train and test the machine learning algorithms in this package 
 
 ## Topics
 
-### Supervised Learning Algorithms
+### Regression Algorithms
 
 - [Simple Linear Regression](./algorithms/SimpleLinearRegression.R)
+- [Simple Linear Regression](./algorithms/MultipleLinearRegression.R)
+- [Logistic Regression](./algorithms/LogisticRegression.R)
+
+### Classification Algorithms
+
 - [Decision Tree Classifier](./algorithms/DecisionTreeClassifier.R)
-- [Naive Bayes Classifier](./algorithms/NaiveBayes.R)
+- [Naïve Bayes Classifier](./algorithms/NaiveBayes.R)
 
 ## Getting Started with R
 
