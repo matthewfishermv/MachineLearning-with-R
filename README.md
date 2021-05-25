@@ -15,7 +15,7 @@ All data used to train and test the machine learning algorithms in this package 
 ### Regression Algorithms
 
 - [Simple Linear Regression](./algorithms/SimpleLinearRegression.R)
-- [Simple Linear Regression](./algorithms/MultipleLinearRegression.R)
+- [Multiple Linear Regression](./algorithms/MultipleLinearRegression.R)
 - [Logistic Regression](./algorithms/LogisticRegression.R)
 
 ### Classification Algorithms
