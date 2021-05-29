@@ -25,11 +25,14 @@ rpart.plot(model, main = "Modelling Hours of Sleep for Mammals")
 pred <- predict(model, newdata = sleep.test)
 
 # Evaluate the results.
-tibble(
+results <- tibble(
   Sleep = sleep.test$sleep_total,
   Predicted = pred,
-  Error = (Predicted - Sleep)
-) %>%
+  Error = (Sleep - Predicted)
+)
+
+# Visualize the predicted values vs. actual values and the errors.
+results %>%
   ggplot(aes(x = Sleep, y = Predicted, color = Error)) +
   geom_point(size = 3) +
   scale_color_gradient2(low = "firebrick1", mid = "yellow", high = "firebrick1") +
@@ -40,3 +43,7 @@ tibble(
     y = "Predicted Sleep (hours)\n"
   ) +
   geom_smooth(method = "lm", formula = y ~ x, se = F, color = "lightgray")
+
+# Compute the Mean Absolute Error (MAE).
+mae <- mean(abs(results$Error))
+print(paste0("The Mean Absolute Error (MAE) for the model is: ", round(mae, 1), " hours."))

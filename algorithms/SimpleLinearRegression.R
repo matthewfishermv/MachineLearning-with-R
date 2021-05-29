@@ -71,7 +71,7 @@ cat(paste0("Son's height is predicted by father's height with the following ",
 tibble(
   Predicted = pred,
   Actual = test.heights$sheight,
-  Error = pred - test.heights$sheight
+  Error = test.heights$sheight - pred
 ) %>% View()
 
 

@@ -139,7 +139,7 @@ pred <- predict(model, newdata = test.data)
 tibble(
   Height = test.data$height,
   Predicted = pred,
-  Error = (Predicted - Height)
+  Error = (Height - Predicted)
 ) %>%
   ggplot(aes(x = Height, y = Predicted, color = Error)) +
   geom_point(size = 3) +
