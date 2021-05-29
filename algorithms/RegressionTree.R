@@ -1,92 +1,42 @@
-library(UsingR)
 library(tidyverse)
-library(grid)
-library(gridExtra)
 library(rpart)
 library(rpart.plot)
 
-
 # Load the data.
-# Source: UsingR package in R.
-# Original Source: https://swapi.dev/
-data <- starwars
+# Source: Mammal sleep data set (Savage and West, 2007).
+sleep <- msleep
 
 # Explore the data.
-p.1 <- data %>%
-  ggplot(aes(x = height)) +
-  geom_boxplot(alpha = 0.5) +
-  labs(
-    title = "",
-    x = "",
-    y = ""
-  ) +
-  scale_fill_discrete("Gender") +
-  coord_flip() +
-  theme_bw() +
-  theme(
-    plot.margin = unit(c(0.75, 0.75, 0.75, 0), "cm")
-  )
+# Plot a histogram of the response variable sleep_total.
+sleep %>% ggplot(aes(x = sleep_total)) + geom_histogram(bins = 15)
 
-p.2 <- data %>%
-  ggplot(aes(x = height, fill = gender)) +
-  geom_histogram(bins = 15, alpha = 0.5) +
-  labs(
-    title = "",
-    x = "",
-    y = "Frequency"
-  ) +
-  scale_fill_discrete("Gender") +
-  coord_flip() +
-  theme_bw() +
-  theme(
-    legend.position = "none",
-    plot.margin = unit(c(0.75, 0.75, 0.75, -0.75), "cm"),
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank()
-  )
+# Create a train-test split.
+train.index <- sample(1:nrow(sleep), size = floor(0.75 * nrow(sleep)), replace = F)
+test.index <- (1:nrow(sleep))[-train.index]
 
-grid.arrange(p.1, p.2,
-             nrow = 1, ncol = 2,
-             top = textGrob("Starwars character weights are approximately normally distributed",
-                            vjust = 1,
-                            gp = gpar(fontface = "bold", cex = 1.2)),
-             left = textGrob("Height (cm.)",
-                             rot = 90,
-                             gp = gpar(fontface = "bold", cex = 1))
-             )
+sleep.train <- sleep[train.index,]
+sleep.test <- sleep[test.index,]
 
-# Split the data into training and test partitions.
-set.seed(283493) # Included for reproducibility.
-train.index <- sample(1:nrow(data), size = floor(0.85 * nrow(data)), replace = F)
-test.index <- (1:nrow(data))[-train.index]
+# Train and plot a regression tree model.
+model <- rpart(sleep_total ~ brainwt + bodywt, data = sleep)
+rpart.plot(model, main = "Modelling Hours of Sleep for Mammals")
 
-train.data <- data[train.index,]
-test.data <- data[test.index,]
+# Use the model to predict sleep hours.
+pred <- predict(model, newdata = sleep.test)
 
-# Train a regression tree on the training set.
-model <- rpart(height ~
-                 mass + hair_color + eye_color + birth_year + sex + gender,
-               data = data)
-
-# Visualize the model.
-rpart.plot(model, main = "Modelling Height of Starwars Characters")
-
-# Use the model to predict heights in the test set.
-pred <- predict(model, newdata = test.data)
-
-# Compare the predictions against ground truth.
+# Evaluate the results.
 tibble(
-  Height = test.data$height,
+  Sleep = sleep.test$sleep_total,
   Predicted = pred,
-  Error = (Predicted - Height)
+  Error = (Predicted - Sleep)
 ) %>%
-  ggplot(aes(x = Height, y = Predicted, color = Error)) +
+  ggplot(aes(x = Sleep, y = Predicted, color = Error)) +
   geom_point(size = 3) +
   scale_color_gradient2(low = "firebrick1", mid = "yellow", high = "firebrick1") +
   theme_bw() +
   labs(
-    title = "Predicted Heights of Starwars Characters\n",
-    x = "\nActual Height",
-    y = "Predicted Height\n"
+    title = "Predicted Sleep for Mammals\n",
+    x = "\nActual Sleep (hours)",
+    y = "Predicted Sleep (hours)\n"
   ) +
-  geom_smooth(method = "lm", se = F, color = "lightgray")
+  geom_smooth(method = "lm", formula = y ~ x, se = F, color = "lightgray")
