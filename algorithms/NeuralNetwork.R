@@ -40,7 +40,7 @@ confusionMatrix(data$Survived[test.index], factor(pred))
 # Add 5 hidden layers.
 net.2 <- neuralnet(SurvivedYes ~ Class2nd + Class3rd + ClassCrew + SexFemale + AgeAdult,
                  data = titanic.train, hidden = 5)
-plot(net, radius = 0.1)
+plot(net.2, radius = 0.1)
 
 pred.2 <- factor(
   ifelse(predict(net.2, titanic.test) >= 0.5, "No", "Yes"),
