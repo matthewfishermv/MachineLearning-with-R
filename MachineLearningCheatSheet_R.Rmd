@@ -64,7 +64,7 @@ r = \frac{1}{n - 1} \sum \left(\frac{x-\bar{x}}{s_x}\right) \left(\frac{y-\bar{y
 In simple linear regression, we estimate two coefficients, $\beta_0$ (the y-intercept) and $\beta_1$ (the regression slope). Because this is an estimate, there is a residual error, $\epsilon$. These are combined to form a **line of best fit**:
 
 \[
-\hat{y} = \beta_0 + \beta_1 x + \epsilon
+\hat{y_i} = \beta_0 + \beta_1 x_i + \epsilon
 \]
 
 Functions related to running simple linear regression models in R are:
@@ -76,6 +76,34 @@ Functions related to running simple linear regression models in R are:
 | `predict()` | stats | Predict values using the trained model. | `m <- lm(y ~ x)`\break`predict(m, test.data)` |
 | `summary()` | base | Summarize a linear model. | `m <- lm(y ~ x)`\break`summary(m)` |
 | `confint()` | stats | Compute confidence interval for model parameters. | `m <- lm(y ~ x)`\break`confint(m)` |
+
+### Multiple Linear Regression
+
+```{r echo=FALSE, out.width="100%", fig.cap=NULL, fig.align="center"}
+knitr::include_graphics("images/MultipleLinearRegression.png")
+```
+
+**Multiple linear regression** is a statistical method for evaluating the relationship between a response (dependent) variable and two or more predictor (independent) variables. It generalizes simple linear regression by allowing for the use of multiple predictor variables instead of just one.
+
+In multiple linear regression, we estimate a $\beta_0$ coefficient (the y-intercept), as well as a $\beta_i$ coefficient for each of $n$ predictor variables. This produces a **line of best fit**:
+
+\[
+\hat{y} = \beta_0 + \beta_1 x_{1} + \beta_2 x_{2} + ... + \beta_n x_{n} + \epsilon
+\]
+
+\[
+= \beta_0 + \sum_{i=1}^{n}{\beta_i x_i} + \epsilon
+\]
+
+Functions related to running multiple linear regression models in R are:
+
+| Function | Package | Description | Example |
+|----------|---------|-------------|---------|
+| `cor()` | stats | Calculate correlation coefficient. | `cor(x, y)` |
+| `lm()` | stats | Train a linear regression model. | `lm(z ~ x + y, data = my.data)` |
+| `predict()` | stats | Predict values using the trained model. | `m <- lm(z ~ x + y)`\break`predict(m, test.data)` |
+| `summary()` | base | Summarize a linear model. | `m <- lm(y ~ x)`\break`summary(m)` |
+| `confint()` | stats | Compute confidence interval for model parameters. | `m <- lm(z ~ x + y)`\break`confint(m)` |
 
 ## Classification Algorithms
 
