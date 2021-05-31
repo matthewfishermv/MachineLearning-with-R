@@ -4,7 +4,7 @@
 
 # Introduction
 
-This repository provides complete examples of machine learning algorithms using the R statistical software.
+This repository provides complete examples of machine learning algorithms using the statistical software R. Topics covered include the concepts and complete examples of machine learning, regression methods, classification, clustering, and neural networks.
 
 The [machine learning cheat sheet](./MachineLearningCheatSheet_R.pdf) outlines machine learning concepts, R libraries, and mathematics. It is organized by machine learning tasks (supervised learning, unspervised learning, etc.).
 
@@ -12,17 +12,25 @@ All data used to train and test the machine learning algorithms in this package 
 
 ## Topics
 
-### Regression Algorithms
+### Supervised:
+
+#### Regression Algorithms
 
 - [Simple Linear Regression](./algorithms/SimpleLinearRegression.R)
 - [Multiple Linear Regression](./algorithms/MultipleLinearRegression.R)
 - [Logistic Regression](./algorithms/LogisticRegression.R)
-- [Regression Tree](./algorithms/RegressionTree.R)
+- [Regression Trees](./algorithms/RegressionTree.R)
 
-### Classification Algorithms
+#### Classification Algorithms
 
-- [Decision Tree Classifier](./algorithms/DecisionTreeClassifier.R)
-- [Naïve Bayes Classifier](./algorithms/NaiveBayes.R)
+- [Decision Tree Classifiers](./algorithms/DecisionTreeClassifier.R)
+- [Naïve Bayes Classifiers](./algorithms/NaiveBayes.R)
+
+### Unsupervised:
+
+#### Neural Networks
+
+- [Artifical Neural Networks](./algorithms/NeuralNetwork.R)
 
 ## Getting Started with R
 
