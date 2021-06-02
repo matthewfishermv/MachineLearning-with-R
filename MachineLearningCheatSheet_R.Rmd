@@ -133,6 +133,15 @@ In the regression setting, $\alpha$ is a linear equation $\beta_0 + \beta_1x$, s
 logit^{-1}(\beta_0 + \beta_1x) = \frac{1}{1-e^{-(\beta_0 + \beta_1x)}} = \frac{e^{\beta_0 + \beta_1x}}{1-e^{\beta_0 + \beta_1x}}
 \]
 
+Functions related to running logistic regression models in R are:
+
+| Function | Package | Description | Example |
+|----------|---------|-------------|---------|
+| `glm()` | stats | Train a generalized linear regression model. | `glm(y ~ x, data = my.data, family = "binomial")` |
+| `predict()` | stats | Predict values using the trained model. | `m <- glm(y ~ x, family = "binomial")`\break`predict(m, test.data)` |
+| `summary()` | base | Summarize a generalized linear model. | `m <- lm(y ~ x)`\break`summary(m)` |
+
+
 ## Classification Algorithms
 
 ### Naive Bayes
