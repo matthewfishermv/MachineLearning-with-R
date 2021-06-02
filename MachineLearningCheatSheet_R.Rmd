@@ -105,6 +105,34 @@ Functions related to running multiple linear regression models in R are:
 | `summary()` | base | Summarize a linear model. | `m <- lm(y ~ x)`\break`summary(m)` |
 | `confint()` | stats | Compute confidence interval for model parameters. | `m <- lm(z ~ x + y)`\break`confint(m)` |
 
+### Logistic Regression
+
+```{r echo=FALSE, out.width="100%", fig.cap=NULL, fig.align="center"}
+knitr::include_graphics("images/LogisticRegression.png")
+```
+
+**Logistic regression** is a statistical method for predicting the outcome of a binary dependent variable. It can be used to describe the relationship between a binary response variable and one or more predictor variables.
+
+Logistic regression predicts the probability, $\hat{p}$ of a binary event occurring using the **log odds** of the event (e.g., *has a disease*, *purchases a product*). This is done using the **logit function**, which maps the values of the dependent variables onto a range between negative infinity and positive infinity:
+
+\[
+logit(p) = ln \left(\frac{p}{1-p}\right)
+\]
+
+where $p=p(success)$ is the probability of a binary event occurring and $1-p=p(failure)$ is the probability of a binary event *not* not occurring.
+
+This function gives values between 0 and 1 on the x axis. We take the inverse logit function to map onto values between 0 and 1 on the y axis. For some number $\alpha$, the **inverse logit function** is given by:
+
+\[
+logit^{-1}(\alpha) = \frac{1}{1-e^{-\alpha}} = \frac{e^\alpha}{1-e^\alpha}
+\]
+
+In the regression setting, $\alpha$ is a linear equation $\beta_0 + \beta_1x$, so the inverse logit function can be expanded to:
+
+\[
+logit^{-1}(\beta_0 + \beta_1x) = \frac{1}{1-e^{-(\beta_0 + \beta_1x)}} = \frac{e^{\beta_0 + \beta_1x}}{1-e^{\beta_0 + \beta_1x}}
+\]
+
 ## Classification Algorithms
 
 ### Naive Bayes
