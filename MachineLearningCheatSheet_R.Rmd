@@ -121,10 +121,10 @@ logit(p) = ln \left(\frac{p}{1-p}\right)
 
 where $p=p(success)$ is the probability of a binary event occurring and $1-p=p(failure)$ is the probability of a binary event *not* not occurring.
 
-This function gives values between 0 and 1 on the x axis. We take the inverse logit function to map onto values between 0 and 1 on the y axis. For some number $\alpha$, the **inverse logit function** is given by:
+This function gives values between 0 and 1 on the x axis. We take the inverse logit function to map onto values between 0 and 1 on the y axis. For some number $\alpha$, the **inverse logit function** is the **sigmoid function**, given by:
 
 \[
-logit^{-1}(\alpha) = \frac{1}{1-e^{-\alpha}} = \frac{e^\alpha}{1-e^\alpha}
+logit^{-1}(\alpha) = \sigma(\alpha) = \frac{1}{1-e^{-\alpha}} = \frac{e^\alpha}{1-e^\alpha}
 \]
 
 In the regression setting, $\alpha$ is a linear equation $\beta_0 + \beta_1x$, so the inverse logit function can be expanded to:
@@ -171,3 +171,36 @@ Functions related to running Naive Bayes classification in R are:
 | `naiveBayes()` | e1071 | Train a Naive Bayes classifier. | `naiveBayes(y ~ ., data, laplace = 1)` |
 | `predict()` | stats | Predict values using the trained model. | `m <- naiveBayes(y ~ ., data)`\break`predict(m, test.data)` |
 | `confusionMatrix()` | caret | Calculate a confusion matrix. | `confusionMatrix(predicted, ground.truth)` |
+
+
+## Neural Networks
+
+### Aritificial Neural Network
+
+```{r echo=FALSE, out.width="100%", fig.cap=NULL, fig.align="center"}
+knitr::include_graphics("images/NeuralNetwork.png")
+```
+
+**Neural networks** are a powerful machine learning tool that borrow concepts from the structure and function of the human brain in addition to traditional statistics and machine learning.
+
+In a simplified way of describing it, the human brain is constructed as an interconnected network of neurons and synapses. Neurons receive electrical input signals, transform them, and pass them along as electrical output signals via synapses once they have reach a threshold for activation.
+
+Similar to the human brain, **artificial neural networks** receive input signals (data) $x_1, x_2, ..., x_n$ and they are processed at individual neurons, passed through the network only when they are activated.
+
+At each neuron, the input signals are first passed through a summing function $z$. Each connection between neurons has a weight $w_i$. The summing function $z$ is the weighted sum across all input signals. A constant bias $b$ is added to adjust the output:
+
+\[
+z=\sum_{i=1}^{n}{x_iw_i} + b
+\]
+
+The next step in the neuron's processing is to pass the results of this biased weighted sum to an **activation function**, which reduces the output values to a defined range and determines when the neuron should fire. Once *activated*, the neural sends an output signal to the next set of neurons. A common activation function used in neural networks is the sigmoid function $\sigma$:
+
+\[
+\sigma(z)=\frac{1}{1+e^{-z}}
+\]
+
+This produces a single output signal $\hat{y}$, which is the prediction of the artificial neural network, given a set of input signals and weights, along with biases and an activation function. The entire process is illustrated below:
+
+```{r echo=FALSE, out.width="100%", fig.cap=NULL, fig.align="center"}
+knitr::include_graphics("images/ArtificialNeuralNetwork.png")
+```
